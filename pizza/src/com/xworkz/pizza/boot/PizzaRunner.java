@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import com.xworkz.pizza.dto.PizzaDto;
 import com.xworkz.pizza.service.PizzaServiceImple;
 import com.xworkz.pizza.service.PizzaServices;
-import com.xworkz.pizza.thing.PizzaSize;
+import com.xworkz.pizza.constant.PizzaSize;
 
 public class PizzaRunner {
 

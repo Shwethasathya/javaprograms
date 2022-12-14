@@ -1,7 +1,7 @@
 package com.xworkz.pizza.service;
 
 import com.xworkz.pizza.dto.PizzaDto;
-import com.xworkz.pizza.thing.PizzaSize;
+import com.xworkz.pizza.constant.PizzaSize;
 
 public class PizzaServiceImple implements PizzaServices {
 

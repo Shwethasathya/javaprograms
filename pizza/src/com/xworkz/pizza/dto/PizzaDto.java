@@ -1,6 +1,6 @@
 package com.xworkz.pizza.dto;
 
-import com.xworkz.pizza.thing.PizzaSize;
+import com.xworkz.pizza.constant.PizzaSize;
 
 public class PizzaDto extends AbstractAuditDTO {
 
