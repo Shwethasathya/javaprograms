@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class AbstractAuditDTO implements Serializable {
 
-	private String createdy;
+	private String createdBy;
 	private LocalDateTime createdDate;
 	private String updatedBy;
 	private LocalDateTime updatedDate;
@@ -16,7 +16,7 @@ public class AbstractAuditDTO implements Serializable {
 
 	public AbstractAuditDTO(String createdy, LocalDateTime createdDate, String updatedBy, LocalDateTime updatedDate) {
 		super();
-		this.createdy = createdy;
+		this.createdBy = createdy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
@@ -24,16 +24,16 @@ public class AbstractAuditDTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "AbstractAuditDTO [createdy=" + createdy + ", createdDate=" + createdDate + ", updatedBy=" + updatedBy
+		return "AbstractAuditDTO [createdy=" + createdBy + ", createdDate=" + createdDate + ", updatedBy=" + updatedBy
 				+ ", updatedDate=" + updatedDate + "]";
 	}
 
 	public String getCreatedy() {
-		return createdy;
+		return createdBy;
 	}
 
 	public void setCreatedy(String createdy) {
-		this.createdy = createdy;
+		this.createdBy = createdy;
 	}
 
 	public LocalDateTime getCreatedDate() {
