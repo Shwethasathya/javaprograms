@@ -1,0 +1,7 @@
+package com.xworkz.stream.constant;
+
+public enum WeaponType {
+
+	MILITARY, HANDGUN, HUNTING, RECURVE_BOW, COMPOUND_BOW, LONG, SHORT, RANGED_WEAPON, HAND_WEAPON, PLAYING, EXPLOSIVES,
+	MISSILES, ROCKET;
+}
