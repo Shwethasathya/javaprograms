@@ -3,8 +3,6 @@ package com.xworkz.auto.bean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.xworkz.auto.Skill;
-
 @Component
 public class Experience {
 	@Autowired
