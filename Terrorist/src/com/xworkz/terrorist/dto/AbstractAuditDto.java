@@ -3,6 +3,12 @@ package com.xworkz.terrorist.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Setter
+@Getter
+@NoArgsConstructor
 public class AbstractAuditDto implements Serializable {
 
 	private String createdBy;
@@ -10,40 +16,5 @@ public class AbstractAuditDto implements Serializable {
 	private String updatedBy;
 	private LocalDateTime updatedDate;
 
-	public AbstractAuditDto() {
-		System.out.println("calling default constructor");
-	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public LocalDateTime getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(LocalDateTime createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public LocalDateTime getUpdatedDate() {
-		return updatedDate;
-	}
-
-	public void setUpdatedDate(LocalDateTime updatedDate) {
-		this.updatedDate = updatedDate;
-	}
-
+	
 }
