@@ -1,7 +1,9 @@
 package com.xworkz.soldier.repository;
 
-import com.xworkz.soldier.dto.SoldierDto;
+import org.springframework.stereotype.Component;
 
+import com.xworkz.soldier.dto.SoldierDto;
+@Component
 public class SoldierRepoImplementation implements SoldierRepo {
 
 	public SoldierRepoImplementation() {
