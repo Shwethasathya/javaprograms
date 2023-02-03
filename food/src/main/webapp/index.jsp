@@ -22,9 +22,20 @@ crossorigin="anonymous"></script>
     <a class="navbar-brand" href="#">
       <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="" width="80" height="48">
     </a>
-	
+    
+    
+    <ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="foodItem.jsp" value="send"> foot items</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="Interview.jsp" value="send"> interview</a>
+  </li>
+    
+</ul>
+<!-- 	
 	<a href="foodItem.jsp" value="send"> foot items </a><br>
-	<a href="Interview.jsp" value="send"> interview </a>
+	<a href="Interview.jsp" value="send"> interview </a> -->
 </div>
 </nav>
 <h1>This is spring with boot strap...</h1>
