@@ -23,7 +23,8 @@ crossorigin="anonymous"></script>
       <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="" width="80" height="48">
     </a>
 	
-	<a href="foodItem.jsp" value="send"> foot items </a>
+	<a href="foodItem.jsp" value="send"> foot items </a><br>
+	<a href="Interview.jsp" value="send"> interview </a>
 </div>
 </nav>
 <h1>This is spring with boot strap...</h1>

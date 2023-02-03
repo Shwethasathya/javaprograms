@@ -14,6 +14,7 @@ public class FoodComponent {
 
 	public FoodComponent() {
 		System.out.println("created " + this.getClass().getSimpleName());
+		//System.out.println("Running default const of FiComponent" + getClass().getSimpleName());
 	}
 
 	@GetMapping

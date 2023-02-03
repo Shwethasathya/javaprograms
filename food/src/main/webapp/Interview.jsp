@@ -29,37 +29,29 @@
 	</nav>
 
 
-<h1>Page to send food item</h1>
-	<form action="sent" method="get">
+<h1>Page to send interview details</h1>
+	<form action="attend" method="get">
 
 		<div class="mb-3">
 			<label for="exampleFormControlInput1" class="form-label">Name</label>
 			<input type="text" class="form-control" name="name"
-				id="exampleFormControlInput1" placeholder="enter food name">
+				id="exampleFormControlInput1" placeholder="enter name">
 		</div>
 		<div>
-			<select class="form-select" aria-label="Default select example" name="type">
-				<option selected>Select food type</option>
-				<option value="Veg">Veg</option>
-				<option value="Non-Veg">Non-Veg</option>
-
-				<option value="Both">Both</option>
+			<select class="form-select" aria-label="Default select example" name="company">
+				<option selected>Select company</option>
+				<option value="X-Workz">X-Workz</option>
+				<option value="X-Workz rajajinagar">X-Workz raj</option>
+			    <option value="X-Workz btm">X-Workz btm</option>
 			</select>
 		</div>
 
-		<div>
-			<label for="customRange2" class="form-label">Quantity</label> <input
-				type="range" class="form-range" min="0" max="5" name="quantity"
-				id="customRange2">
-
-		</div>
-
 		<div class="mb-3">
-			<label for="exampleFormControlInput2" class="form-label">Price</label>
-			<input type="text" class="form-control" name="price"
-				id="exampleFormControlInput2" placeholder="food item price">
+			<label for="exampleFormControlInput1" class="form-label">Role</label>
+			<input type="text" class="form-control" name="role"
+				id="exampleFormControlInput1" placeholder="enter designation">
 		</div>
- 
+		 
 		<div>
 			<input type="submit" value="send" class="btn btn-dark">
 		</div>
