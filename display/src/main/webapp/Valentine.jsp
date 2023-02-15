@@ -36,25 +36,25 @@
 
 
 	<form action="valentine" method="post">
-
-		Name<input type="text" name="name" /> 
-		Valentine Name<input type="text" name="valentineName" /> 
-		Places <select name="places">
-			<option value="">SELECT</option>
+<pre>
+Name<input type="text" name="name" /> 
+Valentine Name<input type="text" name="valentineName" /> 
+Places <select name="places">
+       <option value="">SELECT</option>
 			<c:forEach items="${places}" var="p">
 				<option value="${p}">${p}></option>
 			</c:forEach>
 		</select>
 		
-		Gifts <select name="gifts">
-			<option value="">SELECT</option>
+Gifts <select name="gifts">
+	  <option value="">SELECT</option>
 			<c:forEach items="${gifts}" var="g">
 				<option value="${g}">${g}></option>
 			</c:forEach>
 		</select>
 
 <input type="submit" value="save"/>
-
+</pre>
 	</form>
 </body>
 </html>

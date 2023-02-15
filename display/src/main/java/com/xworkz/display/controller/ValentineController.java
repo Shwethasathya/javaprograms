@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xworkz.display.dto.ValentineDto;
+import com.xworkz.display.entity.ValentineEntity;
 import com.xworkz.display.service.ValentineService;
 
 @Controller
@@ -34,11 +35,6 @@ public class ValentineController {
 	@GetMapping
 	public String onValentine(Model model) {
 		System.out.println("running onValentine get method");
-
-		
-	//	List<String> places = Arrays.asList("cubbon park", "lalbhag", "malls", "hebbal");
-
-		//List<String> gifts = Arrays.asList("teddy", "chacolates", "phone");
 		
 		model.addAttribute("places", places);
 		model.addAttribute("gifts", gifts);
@@ -60,8 +56,10 @@ public class ValentineController {
 		}
 		model.addAttribute("places", places);
 		model.addAttribute("gifts", gifts);
-		model.addAttribute("error", violations);
+		model.addAttribute("errors", violations);
 		System.err.println("violations in controller");
+
+		
 		return "Valentine";
 
 	}

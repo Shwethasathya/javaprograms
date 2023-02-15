@@ -11,7 +11,7 @@
   <quarkus.version>1.13.7.Final</quarkus.version>
   <hibernate.version>5.6.15.Final</hibernate.version>
   <jstl.version>1.2</jstl.version>
-  <mysql.version>8.0.30</mysql.version>
+  <mysql.version>8.0.32</mysql.version>
   <servlet.version>2.5</servlet.version>
   </properties>
   

@@ -13,7 +13,7 @@ public class ValentineDto {
 	@Size(min = 3, max = 20, message = "ValentineName cannot be less than 3 or greater than 20")
 	private String ValentineName;
 	@NotBlank(message = "place should be selected")
-	private String place;
+	private String places;
 	@NotBlank(message = "gift should be selected")
-	private String gift;
+	private String gifts;
 }
