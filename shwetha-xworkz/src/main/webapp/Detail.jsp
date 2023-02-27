@@ -44,7 +44,7 @@
 	
 		Name<input type="text" name="name"> <br>
 		
-		Location <select type="text" name="location"> <br>
+		Location <select name="location"> <br>
 			<option value=" ">SELECT</option>
 			<c:forEach items="${location}" var="l">
 				<option value="${l}">${l}</option>
@@ -52,7 +52,7 @@
 		</select>
 		
 		
-		Type<select type="text" name="type">
+		Type<select name="type">
 			<option value=" ">SELECT</option>
 			<c:forEach items="${type}" var="t">
 				<option value="${t}">${t}</option>
@@ -62,7 +62,7 @@
 		
 		
 		No of cases<input type="text" name="noOfCases"> <br>
-		Established year<input type="text" name="establishedYear"> <br>
+		establishedYear<input type="text" name="establishedYear"> <br>
 				
 		
 </pre>

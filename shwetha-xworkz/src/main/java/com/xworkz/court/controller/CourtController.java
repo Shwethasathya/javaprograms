@@ -35,16 +35,17 @@ public class CourtController {
 		System.out.println("created" + getClass().getSimpleName());
 	}
 
-	@GetMapping("court")
+	@GetMapping("/court")
 	public String onCourt(Model model) {
 
+		System.out.println("running onGet method");
 		model.addAttribute("type", type);
 		model.addAttribute("location", location);
 
 		return "Detail";
 	}
 
-	@PostMapping("court")
+	@PostMapping("/court")
 	public String onCourt(Model model, CourtDto dto) {
 		System.out.println("running onAeroplane post method" + dto);
 

@@ -43,7 +43,8 @@ public class CourtServiceImple implements CourtService{
 			entity.setLocation(dto.getLocation());
 			entity.setType(dto.getType());
 			entity.setNoOfCases(dto.getNoOfCases());
-			entity.setEstablishedYear(dto.getEstablishedYear());
+			entity.setEstablishedYear
+			(dto.getEstablishedYear());
 
 			boolean saved = this.courtRepository.save(entity);
 			System.out.println("saved " + saved);

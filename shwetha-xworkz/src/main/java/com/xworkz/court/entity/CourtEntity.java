@@ -1,6 +1,5 @@
 package com.xworkz.court.entity;
 
-import java.time.Year;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,8 +23,8 @@ public class CourtEntity {
 	@Column(name="type")
 	private String type;
 	@Column(name="noOfCases")
-	private int noOfCases;
+	private Integer noOfCases;
 	@Column(name="establishedYear")
-	private Year establishedYear;
+	private Integer establishedYear;
 
 }
