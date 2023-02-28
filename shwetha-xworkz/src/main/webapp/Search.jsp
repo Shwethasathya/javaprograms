@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
     
 <!DOCTYPE html>
@@ -38,12 +39,14 @@
 Search by id<input type="text" name="id"/>
 <input type="submit" value="search"/>
 
-
+	
 <h4>search results</h4>
 		Name:${dto.name}<br> 
 		Location:${dto.location}<br>
 		Type:${dto.type}<br>
 		NoOfCases:${dto.noOfCases}<br>
 		EstablishedYear:${dto.establishedYear}<br>
+	
+	</form>
 </body>
 </html>

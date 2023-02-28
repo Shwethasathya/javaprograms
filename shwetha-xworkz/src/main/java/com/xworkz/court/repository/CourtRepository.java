@@ -6,5 +6,9 @@ public interface CourtRepository {
 
 	boolean save(CourtEntity entity);
 	
+	default CourtEntity findById(int id) {
+		return null;
+	}
+	
 	
 }

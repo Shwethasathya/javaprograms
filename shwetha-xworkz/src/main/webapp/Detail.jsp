@@ -51,7 +51,6 @@
 			</c:forEach>
 		</select>
 		
-		
 		Type<select name="type">
 			<option value=" ">SELECT</option>
 			<c:forEach items="${type}" var="t">
@@ -59,14 +58,11 @@
 			</c:forEach>
 		</select>
 		
-		
-		
 		No of cases<input type="text" name="noOfCases"> <br>
 		establishedYear<input type="text" name="establishedYear"> <br>
 				
-		
+		<input type="submit" value="save"/>
 </pre>
-<input type="submit" value="save"/>
 
 	</form>
 </body>

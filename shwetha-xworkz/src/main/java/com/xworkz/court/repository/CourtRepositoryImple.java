@@ -14,12 +14,10 @@ public class CourtRepositoryImple implements CourtRepository {
 
 	@Autowired
 	private EntityManagerFactory entityManagerFactory;
-	
+
 	public CourtRepositoryImple() {
 		System.out.println("created" + getClass().getSimpleName());
 	}
-	
-	
 
 	@Override
 	public boolean save(CourtEntity entity) {
@@ -32,7 +30,15 @@ public class CourtRepositoryImple implements CourtRepository {
 		manager.close();
 		return false;
 
+	}
 
+	@Override
+	public CourtEntity findById(int id) {
+		System.out.println("find in repo " + id);
+		EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+		CourtEntity entity = entityManager.find(CourtEntity.class, id);
+		entityManager.close();
+		return entity;
 	}
 
 }
