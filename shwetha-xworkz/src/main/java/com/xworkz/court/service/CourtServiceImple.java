@@ -1,6 +1,8 @@
 package com.xworkz.court.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -50,6 +52,7 @@ public class CourtServiceImple implements CourtService {
 		}
 	}
 
+	@Override
 	public CourtDto findById(int id) {
 		if (id > 0) {
 			CourtEntity entity = this.courtRepository.findById(id);
@@ -66,4 +69,32 @@ public class CourtServiceImple implements CourtService {
 		return CourtService.super.findById(id);
 	}
 
+	@Override
+	public List<CourtDto> findByLocation(String location) {
+
+		System.out.println("running findByLocation in service");
+		if (location != null && !location.isEmpty()) {
+
+			List<CourtEntity> entities = this.courtRepository.findByLocation(location);
+
+			List<CourtDto> courtDtos = new ArrayList<CourtDto>();
+			for (CourtEntity entity : entities) {
+				CourtDto dto = new CourtDto();
+				dto.setName(entity.getName());
+				dto.setLocation(entity.getLocation());
+				dto.setType(entity.getType());
+				dto.setNoOfCases(entity.getNoOfCases());
+				dto.setEstablishedYear(entity.getEstablishedYear());
+				courtDtos.add(dto);
+			}  
+				  System.out.println("size of dto " + courtDtos.size());
+				  System.out.println("size of entries " + entities.size());
+				 
+			return courtDtos;
+
+		} else {
+			System.out.println("location is invalid");
+		}
+		return CourtService.super.findByLocation(location);
+	}
 }

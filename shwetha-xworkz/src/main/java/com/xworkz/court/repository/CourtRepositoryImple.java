@@ -1,8 +1,11 @@
 package com.xworkz.court.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,7 +31,7 @@ public class CourtRepositoryImple implements CourtRepository {
 		manager.persist(entity);
 		transaction.commit();
 		manager.close();
-		return false;
+		return true;
 
 	}
 
@@ -41,4 +44,20 @@ public class CourtRepositoryImple implements CourtRepository {
 		return entity;
 	}
 
+	@Override
+	public List<CourtEntity> findByLocation(String location) {
+		System.out.println("running findByLocation");
+
+		EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+		try {
+			Query query = entityManager.createNamedQuery("findByLocation");
+			query.setParameter("location", location);
+			List<CourtEntity> lists = query.getResultList();
+			return lists;
+		} finally {
+
+			entityManager.close();
+		}
+
+	}
 }

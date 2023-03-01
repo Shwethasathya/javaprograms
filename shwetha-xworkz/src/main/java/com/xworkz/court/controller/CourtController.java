@@ -2,7 +2,6 @@ package com.xworkz.court.controller;
 
 import java.util.Arrays;
 
-
 import java.util.List;
 import java.util.Set;
 
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 import com.xworkz.court.dto.CourtDto;
 import com.xworkz.court.service.CourtService;
@@ -78,5 +76,13 @@ public class CourtController {
 		}
 		return "Search";
 	}
+	@GetMapping("/searchbylocation")
+	public String onSearchByLocation(@RequestParam String location, Model model) {
 
+		System.out.println("running searchByLocation in controller " + location);
+		List<CourtDto> courtDtos = this.courtService.findByLocation(location);
+
+		model.addAttribute("courtDtos", courtDtos);
+		return "SearchByLocation";
+	}
 }

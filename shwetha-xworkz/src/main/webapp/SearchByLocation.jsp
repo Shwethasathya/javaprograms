@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,37 +29,42 @@
 			</a> <a href="index.jsp">Home</a>
 		</div>
 	</nav>
+	
+	<h5 style="color: red">${message}</h5>
+	
 
-	<h4>Court Details</h4>
-	
-	<c:forEach items="${error}" var="e">
-	<h1>
-<span style="color:red;">${e.message}</span></h1>
-</c:forEach>
-	
-	<form action="court" method="post">
-<pre>
-		
-	
-  Name<input type="text" name="name"> <br>		
-  Location <select name="location"> <br>
-			<option value=" ">SELECT</option><br>
-			<c:forEach items="${location}" var="l">
-				<option value="${l}">${l}</option>
-			</c:forEach>
-		</select>		<br>
-  Type<select name="type">
-			<option value=" ">SELECT</option>
-			<c:forEach items="${type}" var="t">
-				<option value="${t}">${t}</option>
-			</c:forEach>
-		</select><br>
-  No of cases<input type="text" name="noOfCases"> <br>
-  establishedYear<input type="text" name="establishedYear"> <br>
-				
-		<input type="submit" value="save"/>
-</pre>
+<form action="searchbylocation" method="get">
 
+
+Search by location<input type="text" name="location"/>
+<input type="submit" value="search"/>
+
+	
+<h4>search results</h4>
 	</form>
+
+<table>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>Location</th>
+<th>Type</th>
+<th>No of cases</th>
+<th>Established year</th>
+</tr>
+
+<c:forEach items="${courtDtos}" var="t">
+
+<tr>
+<td>${t.id}</td>
+<td>${t.name}</td>
+<td>${t.location}</td>
+<td>${t.type}</td>
+<td>${t.noOfCases}</td>
+<td>${t.establishedYear}</td>
+</tr>
+</c:forEach>
+</table>
+
 </body>
 </html>
