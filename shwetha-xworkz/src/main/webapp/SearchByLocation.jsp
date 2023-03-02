@@ -30,27 +30,25 @@
 		</div>
 	</nav>
 	
-	<h5 style="color: red">${message}</h5>
-	
 
 <form action="searchbylocation" method="get">
 
-
+	<h5 style="color: red">${message}</h5>
+	
 Search by location<input type="text" name="location"/>
 <input type="submit" value="search"/>
+	</form>	
+<table class="table">
 
-	
-<h4>search results</h4>
-	</form>
-
-<table>
 <tr>
-<th>Id</th>
-<th>Name</th>
-<th>Location</th>
-<th>Type</th>
-<th>No of cases</th>
-<th>Established year</th>
+<th scope="col">Id</th>
+<th scope="col">Name</th>
+<th scope="col">Location</th>
+<th scope="col">Type</th>
+<th scope="col">No of cases</th>
+<th scope="col">Established year</th>
+<th scope="col">Edit</th>
+<th scope="col">Delete</th>
 </tr>
 
 <c:forEach items="${courtDtos}" var="t">
@@ -62,9 +60,13 @@ Search by location<input type="text" name="location"/>
 <td>${t.type}</td>
 <td>${t.noOfCases}</td>
 <td>${t.establishedYear}</td>
+<td><a href="update?id=${t.id}">Edit</a></td>
+<td><a href="delete?id=${t.id}">Delete</a></td>
+
 </tr>
 </c:forEach>
 </table>
+
 
 </body>
 </html>

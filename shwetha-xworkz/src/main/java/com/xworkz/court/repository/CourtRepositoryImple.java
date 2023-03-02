@@ -60,4 +60,38 @@ public class CourtRepositoryImple implements CourtRepository {
 		}
 
 	}
+
+	@Override
+	public boolean update(CourtEntity entity) {
+		System.out.println("created" + getClass().getSimpleName());
+		EntityManager manager = this.entityManagerFactory.createEntityManager();
+		try {
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			manager.merge(entity);
+			transaction.commit();
+			return true;
+
+		} finally {
+			manager.close();
+		}
+	}
+
+	@Override
+	public CourtEntity deleteById(int id) {
+		EntityManager manager = this.entityManagerFactory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		CourtEntity courtEntity = manager.find(CourtEntity.class, id);
+		if (courtEntity != null) {
+			transaction.begin();
+			manager.remove(courtEntity);
+			transaction.commit();
+			manager.close();
+			return courtEntity;
+		} else {
+			return CourtRepository.super.deleteById(id);
+		}
+
+	}
+
 }

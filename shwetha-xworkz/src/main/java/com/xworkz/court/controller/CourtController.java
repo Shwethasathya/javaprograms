@@ -76,6 +76,7 @@ public class CourtController {
 		}
 		return "Search";
 	}
+	
 	@GetMapping("/searchbylocation")
 	public String onSearchByLocation(@RequestParam String location, Model model) {
 
@@ -84,5 +85,40 @@ public class CourtController {
 
 		model.addAttribute("courtDtos", courtDtos);
 		return "SearchByLocation";
+	}
+
+	@GetMapping("/update")
+	public String onUpdate(@RequestParam int id, Model model) {
+		System.out.println("running update get method");
+		System.out.println("running onUpdate " + id);
+		CourtDto dto = this.courtService.findById(id);
+		model.addAttribute("dto", dto);
+		model.addAttribute("type", type);
+		model.addAttribute("location", location);
+		return "Update";
+	}
+
+	@PostMapping("/update")
+	public String onUpdate(CourtDto dto, Model model) {
+		System.out.println("running onUpdate " + dto);
+		
+
+		Set<ConstraintViolation<CourtDto>> constraintViolations = this.courtService.validateAndUpdate(dto);
+		if (constraintViolations.size() > 0) {
+			model.addAttribute("error", constraintViolations);
+		} else {
+			model.addAttribute("message", "update success");
+		}
+		return "Update";
+	}
+
+	@GetMapping("/delete")
+	public String onDelete(@RequestParam int id, Model model) {
+		System.out.println("running onDelete");
+		CourtDto courtDto = this.courtService.deleteById(id);
+		model.addAttribute("delete", courtDto);
+		model.addAttribute("message", "deleted successfully");
+		return "Delete";
+
 	}
 }

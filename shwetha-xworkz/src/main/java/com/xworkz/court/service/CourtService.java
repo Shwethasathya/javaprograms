@@ -17,8 +17,13 @@ public interface CourtService {
 	}
 
 	default List<CourtDto> findByLocation(String location) {
-
 		return Collections.emptyList();
+	}
+
+	Set<ConstraintViolation<CourtDto>> validateAndUpdate(CourtDto dto);
+
+	default CourtDto deleteById(int id) {
+		return null;
 	}
 
 }

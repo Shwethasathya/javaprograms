@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,27 +37,34 @@
 </c:forEach>
 	
 	<form action="court" method="post">
-<pre>
-		
-	
-  Name<input type="text" name="name"> <br>		
-  Location <select name="location"> <br>
-			<option value=" ">SELECT</option><br>
+<div class="mb-3">
+     <label for="formFile" class="form-label">Name</label> <input
+			type="text" class="form-control" name="name" id="formFile" required="required"
+			value="${name}" />
+		</div>
+Location <select class="form-select" aria-label="Default select example" name="location" required="required"> 
+			<option selected value="${dto.location}">${dto.location}</option>
 			<c:forEach items="${location}" var="l">
 				<option value="${l}">${l}</option>
 			</c:forEach>
-		</select>		<br>
-  Type<select name="type">
-			<option value=" ">SELECT</option>
+		</select>
+Type <select class="form-select" aria-label="Default select example" name="type" required="required"> 
+			<option selected value="${dto.type}">${dto.type}</option>
 			<c:forEach items="${type}" var="t">
 				<option value="${t}">${t}</option>
 			</c:forEach>
-		</select><br>
-  No of cases<input type="text" name="noOfCases"> <br>
-  establishedYear<input type="text" name="establishedYear"> <br>
-				
+		</select><div class="mb-3">
+     <label for="formFile" class="form-label">No of cases</label> <input
+			type="text" class="form-control" name="noOfCases" id="formFile" required="required"
+			 value="${noOfCases}" />
+		</div>
+<div class="mb-3">
+     <label for="formFile" class="form-label">Established Year</label> <input
+			type="text" class="form-control" name="establishedYear" id="formFile" required="required"
+			 value="${establishedYear}" />
+		</div>
+
 		<input type="submit" value="save"/>
-</pre>
 
 	</form>
 </body>

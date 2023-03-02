@@ -40,6 +40,7 @@ public class CourtServiceImple implements CourtService {
 
 			System.out.println("no violations can save the data");
 			CourtEntity entity = new CourtEntity();
+			entity.setId(dto.getId());
 			entity.setName(dto.getName());
 			entity.setLocation(dto.getLocation());
 			entity.setType(dto.getType());
@@ -58,6 +59,7 @@ public class CourtServiceImple implements CourtService {
 			CourtEntity entity = this.courtRepository.findById(id);
 			if (entity != null) {
 				CourtDto dto = new CourtDto();
+				dto.setId(entity.getId());
 				dto.setName(entity.getName());
 				dto.setLocation(entity.getLocation());
 				dto.setType(entity.getType());
@@ -85,16 +87,65 @@ public class CourtServiceImple implements CourtService {
 				dto.setType(entity.getType());
 				dto.setNoOfCases(entity.getNoOfCases());
 				dto.setEstablishedYear(entity.getEstablishedYear());
+				dto.setId(entity.getId());
 				courtDtos.add(dto);
-			}  
-				  System.out.println("size of dto " + courtDtos.size());
-				  System.out.println("size of entries " + entities.size());
-				 
+			}
+			System.out.println("size of dto " + courtDtos.size());
+			System.out.println("size of entries " + entities.size());
+
 			return courtDtos;
 
 		} else {
 			System.out.println("location is invalid");
 		}
 		return CourtService.super.findByLocation(location);
+	}
+
+	@Override
+	public Set<ConstraintViolation<CourtDto>> validateAndUpdate(CourtDto dto) {
+
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		Set<ConstraintViolation<CourtDto>> violations = validator.validate(dto);
+		if (violations != null && !violations.isEmpty()) {
+			System.out.println("violations " + dto);
+			return violations;
+		} else {
+
+			System.out.println("no violations can save the data");
+			CourtEntity entity = new CourtEntity();
+			entity.setId(dto.getId());
+			entity.setName(dto.getName());
+			entity.setLocation(dto.getLocation());
+			entity.setType(dto.getType());
+			entity.setNoOfCases(dto.getNoOfCases());
+			entity.setEstablishedYear(dto.getEstablishedYear());
+			
+			boolean saved = this.courtRepository.update(entity);
+			System.out.println("saved " + saved);
+			return Collections.emptySet();
+		}
+
+	}
+
+	@Override
+	public CourtDto deleteById(int id) {
+
+		System.out.println("running onDelete");
+		CourtEntity entity = this.courtRepository.deleteById(id);
+
+		if (entity != null) {
+			CourtDto dto = new CourtDto();
+			dto.setName(entity.getName());
+			dto.setLocation(entity.getLocation());
+			dto.setType(entity.getType());
+			dto.setNoOfCases(entity.getNoOfCases());
+			dto.setEstablishedYear(entity.getEstablishedYear());
+			return dto;
+		} else {
+
+			return CourtService.super.deleteById(id);
+		}
+
 	}
 }

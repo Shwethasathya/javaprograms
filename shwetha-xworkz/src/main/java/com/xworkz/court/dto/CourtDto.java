@@ -11,7 +11,7 @@ public class CourtDto {
 
 	private int id;
 	@NotNull
-	@Size(min = 3, max = 20, message = "name should be greater than 3 less than 20")
+	
 	private String name;
 	@NotNull
 	private String location;
