@@ -29,6 +29,7 @@
 			</a> <a href="Search.jsp">Search</a>
 			<a href="SearchByLocation.jsp">Search location</a>
 			<a href="court">Detail</a>
+			<a href="findAll.jsp">findAll</a>
 			
 		</div>
 	</nav>

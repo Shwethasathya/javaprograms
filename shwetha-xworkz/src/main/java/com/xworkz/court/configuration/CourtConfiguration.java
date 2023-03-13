@@ -16,7 +16,8 @@ public class CourtConfiguration {
 	}
 
 	@Bean
-	public ViewResolver viewResolver() {
+	public ViewResolver viewResolver() {  
+		
 		System.out.println("registering custom viewResolver");
 		return new InternalResourceViewResolver("/", ".jsp");
 	}

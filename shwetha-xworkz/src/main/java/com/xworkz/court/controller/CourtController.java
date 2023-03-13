@@ -40,18 +40,15 @@ public class CourtController {
 		System.out.println("running onGet method");
 		model.addAttribute("type", type);
 		model.addAttribute("location", location);
-
 		return "Detail";
 	}
 
 	@PostMapping("/court")
 	public String onCourt(Model model, CourtDto dto) {
-		System.out.println("running onAeroplane post method" + dto);
-
+		System.out.println("running onCourt post method" + dto);
 		Set<ConstraintViolation<CourtDto>> violations = this.courtService.validateAndSave(dto);
 		if (violations.isEmpty()) {
 			System.out.println("no violations in controller");
-
 			return "Detail";
 		}
 		model.addAttribute("type", type);
@@ -60,7 +57,6 @@ public class CourtController {
 		model.addAttribute("dto", dto);
 		System.out.println(dto);
 		System.err.println("violations in controller");
-
 		return "Detail";
 	}
 
@@ -76,7 +72,7 @@ public class CourtController {
 		}
 		return "Search";
 	}
-	
+
 	@GetMapping("/searchbylocation")
 	public String onSearchByLocation(@RequestParam String location, Model model) {
 
@@ -101,7 +97,6 @@ public class CourtController {
 	@PostMapping("/update")
 	public String onUpdate(CourtDto dto, Model model) {
 		System.out.println("running onUpdate " + dto);
-		
 
 		Set<ConstraintViolation<CourtDto>> constraintViolations = this.courtService.validateAndUpdate(dto);
 		if (constraintViolations.size() > 0) {
@@ -121,4 +116,18 @@ public class CourtController {
 		return "Delete";
 
 	}
+
+	@GetMapping("/findAll")
+	public String onFind(Model model, CourtDto dto) {
+		System.out.println("running find post method" + dto);
+		List<CourtDto> courtDtos = this.courtService.find();
+		if (courtDtos != null && !courtDtos.isEmpty()) {
+			model.addAttribute("courtDtos", courtDtos);
+		} else {
+			model.addAttribute("message", "not found");
+		}
+		return "findAll";
+
+	}
+
 }

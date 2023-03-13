@@ -16,11 +16,12 @@ import lombok.Data;
 @Entity
 @Table(name="court")
 @NamedQuery(name = "findByLocation", query = "select entity from CourtEntity entity where entity.location=:location")
+@NamedQuery(name = "findAll", query = "select entity from CourtEntity entity where entity.name=name")
+@NamedQuery(name = "findByProperty", query = "select entity from CourtEntity entity where entity.name=:name or entity.type=:type")
 public class CourtEntity {
 	
 	@Id
 	@Column(name="id")
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="name")
 	private String name;

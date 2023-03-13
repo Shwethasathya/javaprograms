@@ -1,15 +1,12 @@
 package com.xworkz.court.repository;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.xworkz.court.entity.CourtEntity;
 
 @Repository
@@ -26,13 +23,15 @@ public class CourtRepositoryImple implements CourtRepository {
 	public boolean save(CourtEntity entity) {
 		System.out.println("created" + getClass().getSimpleName());
 		EntityManager manager = this.entityManagerFactory.createEntityManager();
-		EntityTransaction transaction = manager.getTransaction();
-		transaction.begin();
-		manager.persist(entity);
-		transaction.commit();
-		manager.close();
-		return true;
-
+		try {
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			manager.persist(entity);
+			transaction.commit();
+			return true;
+		} finally {
+			manager.close();
+		}
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class CourtRepositoryImple implements CourtRepository {
 
 	@Override
 	public List<CourtEntity> findByLocation(String location) {
-		System.out.println("running findByLocation");
+		System.out.println("running findByLocation in repo");
 
 		EntityManager entityManager = this.entityManagerFactory.createEntityManager();
 		try {
@@ -91,7 +90,23 @@ public class CourtRepositoryImple implements CourtRepository {
 		} else {
 			return CourtRepository.super.deleteById(id);
 		}
+	}
+
+	@Override
+	public List<CourtEntity> find() {
+
+		System.out.println("running findAll in repo");
+		EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+		try {
+			Query query = entityManager.createNamedQuery("findAll");
+			List<CourtEntity> lists = query.getResultList();
+			lists.forEach(s -> System.out.println(s));
+			return lists;
+		} finally {
+			entityManager.close();
+		}
 
 	}
 
+	
 }

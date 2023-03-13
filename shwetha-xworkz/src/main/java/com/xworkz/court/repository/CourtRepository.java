@@ -19,11 +19,12 @@ public interface CourtRepository {
 	}
 
 	boolean update(CourtEntity entity);
-	
+
 	default CourtEntity deleteById(int id) {
 		return null;
 	}
 
-
-
+	default List<CourtEntity> find() {
+		return Collections.emptyList();
+	}
 }

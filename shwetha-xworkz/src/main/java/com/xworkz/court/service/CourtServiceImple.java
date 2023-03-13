@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.xworkz.court.dto.CourtDto;
 import com.xworkz.court.entity.CourtEntity;
 import com.xworkz.court.repository.CourtRepository;
@@ -121,6 +120,8 @@ public class CourtServiceImple implements CourtService {
 			entity.setNoOfCases(dto.getNoOfCases());
 			entity.setEstablishedYear(dto.getEstablishedYear());
 			
+			//BeanUtils.copyProperties(dto, entity);
+			
 			boolean saved = this.courtRepository.update(entity);
 			System.out.println("saved " + saved);
 			return Collections.emptySet();
@@ -136,6 +137,7 @@ public class CourtServiceImple implements CourtService {
 
 		if (entity != null) {
 			CourtDto dto = new CourtDto();
+			dto.setId(entity.getId());
 			dto.setName(entity.getName());
 			dto.setLocation(entity.getLocation());
 			dto.setType(entity.getType());
@@ -148,4 +150,26 @@ public class CourtServiceImple implements CourtService {
 		}
 
 	}
-}
+	
+	@Override
+	public List<CourtDto> find() {
+		System.out.println("running find in service");
+
+		List<CourtEntity> entities =  this.courtRepository.find();
+		List<CourtDto> list = new ArrayList<CourtDto>();
+		if (entities != null && !entities.isEmpty()) {
+			for (CourtEntity entity : entities) {
+				CourtDto dto = new CourtDto();
+				BeanUtils.copyProperties(entity, dto);
+				list.add(dto);
+			}
+			System.out.println("size of dto " + list.size());
+			System.out.println("size of entries " + entities.size());
+			return list; 
+		}else {
+			System.out.println("no data found");
+			return Collections.emptyList();
+			
+		}	
+	}
+}	

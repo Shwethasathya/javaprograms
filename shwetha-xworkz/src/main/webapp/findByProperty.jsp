@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,54 +26,40 @@
 			</a> <a href="index.jsp">Home</a>
 		</div>
 	</nav>
+	
 
-	<h4>Update the details</h4>
+<form action="property" method="get">
+
+	<h5 style="color: red">${message}</h5>
 	
-	<c:forEach items="${error}" var="e">
-	<br>
-	
-<h1><span style="color:red;">${e.message}</span>
+find<input type="text" name="find"/>
+<input type="submit" value="search"/>	
+
+	</form>	
+<table class="table">
+
+<tr>
+<th scope="col">Id</th>
+<th scope="col">Name</th>
+<th scope="col">Location</th>
+<th scope="col">Type</th>
+<th scope="col">No of cases</th>
+<th scope="col">Established year</th>
+</tr>
+
+<c:forEach items="${courtDtos}" var="f">
+
+<tr>
+<td>${f.id}</td>
+<td>${f.name}</td>
+<td>${f.location}</td>
+<td>${f.type}</td>
+<td>${f.noOfCases}</td>
+<td>${f.establishedYear}</td>
+</tr>
 </c:forEach>
-	<div><span style="color:green;">${message}</span></div></h1>
-	
-	<form action="update" method="post">
-	
-	<div class="mb-3">
-     <label for="formFile" class="form-label">Id</label> <input
-			type="text" class="form-control" name="id" id="formFile" readonly="readonly" 
-			value="${dto.id}" />
-		</div>
-	
-<div class="mb-3">
-     <label for="formFile" class="form-label">Name</label> <input
-			type="text" class="form-control" name="name" id="formFile"  required="required"
-			value="${dto.name}" />
-		</div>
-Location <select class="form-select" aria-label="Default select example" name="location" required="required"> 
-			<option selected value="${dto.location}">${dto.location}</option>
-			<c:forEach items="${location}" var="l">
-				<option value="${l}">${l}</option>
-			</c:forEach>
-		</select>
-Type <select class="form-select" aria-label="Default select example" name="type" required="required"> 
-			<option selected value="${dto.type}">${dto.type}</option>
-			<c:forEach items="${type}" var="t">
-				<option value="${t}">${t}</option>
-			</c:forEach>
-		</select>
-		<div class="mb-3">
-     <label for="formFile" class="form-label">No of cases</label> <input
-			type="text" class="form-control" name="noOfCases" id="formFile" required="required"
-			 value="${dto.noOfCases}" />
-		</div>
-<div class="mb-3">
-     <label for="formFile" class="form-label">Established Year</label> <input
-			type="text" class="form-control" name="establishedYear" id="formFile" required="required"
-			 value="${dto.establishedYear}" />
-		</div>
+</table>
 
-		<input type="submit" value="update"/>
 
-	</form>
 </body>
 </html>

@@ -2,7 +2,6 @@ package com.xworkz.court.dto;
 
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -11,7 +10,6 @@ public class CourtDto {
 
 	private int id;
 	@NotNull
-	
 	private String name;
 	@NotNull
 	private String location;

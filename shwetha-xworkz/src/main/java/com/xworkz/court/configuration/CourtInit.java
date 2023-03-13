@@ -12,7 +12,7 @@ public class CourtInit extends AbstractAnnotationConfigDispatcherServletInitiali
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		// TODO Auto-generated method stub
+		System.out.println("getRootConfigClasses");
 		return null;
 	}
 
@@ -30,6 +30,7 @@ public class CourtInit extends AbstractAnnotationConfigDispatcherServletInitiali
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+	System.out.println("configureDefaultServletHandling");
 		configurer.enable();
 	}
 }

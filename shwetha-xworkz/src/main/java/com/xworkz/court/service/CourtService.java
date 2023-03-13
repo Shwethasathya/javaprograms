@@ -26,4 +26,9 @@ public interface CourtService {
 		return null;
 	}
 
+	default List<CourtDto> find() {
+		return Collections.emptyList();
+	}
+	
+
 }
