@@ -17,14 +17,14 @@ public interface CourtRepository {
 		return Collections.emptyList();
 
 	}
-
+	
 	boolean update(CourtEntity entity);
 
 	default CourtEntity deleteById(int id) {
 		return null;
 	}
 
-	default List<CourtEntity> find() {
+	default List<CourtEntity> findAll() {
 		return Collections.emptyList();
 	}
 }

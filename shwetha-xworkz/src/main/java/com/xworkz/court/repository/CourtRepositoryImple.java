@@ -60,6 +60,7 @@ public class CourtRepositoryImple implements CourtRepository {
 
 	}
 
+		
 	@Override
 	public boolean update(CourtEntity entity) {
 		System.out.println("created" + getClass().getSimpleName());
@@ -93,7 +94,7 @@ public class CourtRepositoryImple implements CourtRepository {
 	}
 
 	@Override
-	public List<CourtEntity> find() {
+	public List<CourtEntity> findAll() {
 
 		System.out.println("running findAll in repo");
 		EntityManager entityManager = this.entityManagerFactory.createEntityManager();

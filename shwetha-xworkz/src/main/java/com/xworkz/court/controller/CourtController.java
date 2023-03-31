@@ -1,12 +1,15 @@
 package com.xworkz.court.controller;
 
-import java.util.Arrays;
+import java.io.IOException;
 
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-
 import javax.validation.ConstraintViolation;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartFile;
 import com.xworkz.court.dto.CourtDto;
 import com.xworkz.court.service.CourtService;
 
@@ -38,6 +41,7 @@ public class CourtController {
 	public String onCourt(Model model) {
 
 		System.out.println("running onGet method");
+		
 		model.addAttribute("type", type);
 		model.addAttribute("location", location);
 		return "Detail";
@@ -78,8 +82,11 @@ public class CourtController {
 
 		System.out.println("running searchByLocation in controller " + location);
 		List<CourtDto> courtDtos = this.courtService.findByLocation(location);
-
-		model.addAttribute("courtDtos", courtDtos);
+		if (courtDtos != null) {
+			model.addAttribute("courtDtos", courtDtos);
+		} else {
+			model.addAttribute("message", "not found");
+		}
 		return "SearchByLocation";
 	}
 
@@ -114,20 +121,31 @@ public class CourtController {
 		model.addAttribute("delete", courtDto);
 		model.addAttribute("message", "deleted successfully");
 		return "Delete";
-
 	}
 
 	@GetMapping("/findAll")
 	public String onFind(Model model, CourtDto dto) {
 		System.out.println("running find post method" + dto);
-		List<CourtDto> courtDtos = this.courtService.find();
+		List<CourtDto> courtDtos = this.courtService.findAll();
 		if (courtDtos != null && !courtDtos.isEmpty()) {
 			model.addAttribute("courtDtos", courtDtos);
 		} else {
 			model.addAttribute("message", "not found");
 		}
 		return "findAll";
-
 	}
-
+	
+	@GetMapping("/upload")
+	public String onUpload(@RequestParam("image") MultipartFile multipartFile) throws IOException{
+	System.out.println("multipartFile" +multipartFile);
+	System.out.println(multipartFile.getOriginalFilename());
+	System.out.println(multipartFile.getContentType());
+	System.out.println(multipartFile.getSize());
+	System.out.println(multipartFile.getBytes());
+	
+	byte[] bytes = multipartFile.getBytes();
+	Path path = Paths.get("D:\\court-files\\" + multipartFile.getOriginalFilename());
+	Files.write(path, bytes);
+	return "ImageUpload";
+}
 }

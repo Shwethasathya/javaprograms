@@ -81,12 +81,7 @@ public class CourtServiceImple implements CourtService {
 			List<CourtDto> courtDtos = new ArrayList<CourtDto>();
 			for (CourtEntity entity : entities) {
 				CourtDto dto = new CourtDto();
-				dto.setName(entity.getName());
-				dto.setLocation(entity.getLocation());
-				dto.setType(entity.getType());
-				dto.setNoOfCases(entity.getNoOfCases());
-				dto.setEstablishedYear(entity.getEstablishedYear());
-				dto.setId(entity.getId());
+				BeanUtils.copyProperties(entities, courtDtos);
 				courtDtos.add(dto);
 			}
 			System.out.println("size of dto " + courtDtos.size());
@@ -113,15 +108,15 @@ public class CourtServiceImple implements CourtService {
 
 			System.out.println("no violations can save the data");
 			CourtEntity entity = new CourtEntity();
-			entity.setId(dto.getId());
-			entity.setName(dto.getName());
-			entity.setLocation(dto.getLocation());
-			entity.setType(dto.getType());
-			entity.setNoOfCases(dto.getNoOfCases());
-			entity.setEstablishedYear(dto.getEstablishedYear());
-			
-			//BeanUtils.copyProperties(dto, entity);
-			
+			/*
+			 * entity.setId(dto.getId()); entity.setName(dto.getName());
+			 * entity.setLocation(dto.getLocation()); entity.setType(dto.getType());
+			 * entity.setNoOfCases(dto.getNoOfCases());
+			 * entity.setEstablishedYear(dto.getEstablishedYear());
+			 * 
+			 */
+			BeanUtils.copyProperties(dto, entity);
+
 			boolean saved = this.courtRepository.update(entity);
 			System.out.println("saved " + saved);
 			return Collections.emptySet();
@@ -137,12 +132,7 @@ public class CourtServiceImple implements CourtService {
 
 		if (entity != null) {
 			CourtDto dto = new CourtDto();
-			dto.setId(entity.getId());
-			dto.setName(entity.getName());
-			dto.setLocation(entity.getLocation());
-			dto.setType(entity.getType());
-			dto.setNoOfCases(entity.getNoOfCases());
-			dto.setEstablishedYear(entity.getEstablishedYear());
+			BeanUtils.copyProperties(entity, dto);
 			return dto;
 		} else {
 
@@ -150,12 +140,11 @@ public class CourtServiceImple implements CourtService {
 		}
 
 	}
-	
-	@Override
-	public List<CourtDto> find() {
-		System.out.println("running find in service");
 
-		List<CourtEntity> entities =  this.courtRepository.find();
+	@Override
+	public List<CourtDto> findAll() {
+		System.out.println("running find in service");
+		List<CourtEntity> entities = this.courtRepository.findAll();
 		List<CourtDto> list = new ArrayList<CourtDto>();
 		if (entities != null && !entities.isEmpty()) {
 			for (CourtEntity entity : entities) {
@@ -165,11 +154,13 @@ public class CourtServiceImple implements CourtService {
 			}
 			System.out.println("size of dto " + list.size());
 			System.out.println("size of entries " + entities.size());
-			return list; 
-		}else {
+			return list;
+		} else {
 			System.out.println("no data found");
 			return Collections.emptyList();
-			
-		}	
+
+		}
 	}
-}	
+	
+	
+}
